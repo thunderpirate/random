@@ -2,6 +2,7 @@
 import streamlit as st
 import pandas as pd
 import requests
+from bs4 import BeautifulSoup
 
 teams = {'Liam':['Brazil','France','Senegal','Argentina'], 
          'Andrew':['France','Switzerland','Morocco','Uruguay'],
@@ -23,7 +24,7 @@ points_map = {'Qatar':65,'Ecuador':50,'Senegal':35,'Netherlands':14,'England':12
              'Japan':60,'Spain':12,'Costa Rica':120,'Morocco':60,'Croatia':25, 'Belgium':16,
              'Canada':17,'Switzerland':35,'Cameroon':75,'Brazil':10, 'Serbia':35,
              'Uruguay':25,'South Korea':60, 'Portugal':15, 'Ghana':65}
-results: {}
+standings= {}
 
 url= 'https://worldcupjson.net/teams'
 r=requests.get(url)
