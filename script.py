@@ -66,4 +66,6 @@ teams_df = pd.DataFrame(teams).T
 games_played_df=pd.DataFrame.from_dict(games_played,orient='index',columns=['games played outta 12'])
 to_publish = my_df.join(games_played_df).join(teams_df)
 to_publish['ppg']=to_publish['points']/to_publish['games played outta 12']
+to_publish.rename(columns = {'games played outta 12':'group games played',0:'Team 1',1:'Team 2',2:'Team 3',3:'Team 4'}, inplace = True)
+to_publish=to_publish[['points','group games played','ppg','Team 1','Team 2','Team 3','Team 4']]
 st.dataframe(data=to_publish, height=my_df.shape[0]*50, use_container_width=True)
