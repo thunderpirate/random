@@ -16,7 +16,9 @@ teams = {'Liam':['Brazil','France','Senegal','Argentina'],
         'Esther':['Brazil','Argentina','Mexico','Denmark'],
         'Kyle':['Netherlands','United States','Denmark','Canada'],
         'Lori':['Germany','Portugal','Brazil','Cameroon'],
-        'Moneca':['Brazil','Germany','France','Argentina']}
+        'Moneca':['Brazil','Germany','France','Argentina'],
+         'Nelson':['Ecuador','Denmark','Germany','Brazil'],
+        'Nick':['Netherlands','England','France','Brazil']}
 points_map = {'Qatar':65,'Ecuador':50,'Senegal':35,'Netherlands':14,'England':12,'Iran':65,
               'United States':35,'Wales':40,'Argentina':11, 'Saudi Arabia':120,'Mexico':35,
               'Poland':35, 'Denmark':20,'Tunisia':90,'France':11,'Australia':75,'Germany':13,
