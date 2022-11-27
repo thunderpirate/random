@@ -41,4 +41,5 @@ df = pd.DataFrame(master_data)
 for player in teams:
     for pick in teams[player]:
         standings[player]+=int(df.loc[df['name'] == pick, 'group_points'])*points_map[pick]
-st.write(standings)
+df = pd.DataFrame(standings)
+st.write(df)
