@@ -38,8 +38,9 @@ for k,v in data.items():
             master_data.append(y)
 df = pd.DataFrame(master_data)
 
-for player in teams:
-    for pick in teams[player]:
-        standings[player]+=int(df.loc[df['name'] == pick, 'group_points'])*points_map[pick]
 my_df = pd.DataFrame.from_dict(standings,orient='index',columns=['points']).sort_values(by=['points'],ascending=False)
-st.dataframe(data=my_df, height=my_df.shape[0]*50, use_container_width=False)
+teams_df = pd.DataFrame(teams).T
+games_played_df=pd.DataFrame.from_dict(games_played,orient='index',columns=['games played outta 12'])
+to_publish = my_df.join(games_played_df).join(teams_df)
+to_publish['ppg']=to_publish['points']/to_publish['games played outta 12']
+st.dataframe(data=to_publish, height=my_df.shape[0]*50, use_container_width=True)
