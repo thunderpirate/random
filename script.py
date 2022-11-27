@@ -23,21 +23,25 @@ points_map = {'Qatar':65,'Ecuador':50,'Senegal':35,'Netherlands':14,'England':12
              'Japan':60,'Spain':12,'Costa Rica':120,'Morocco':60,'Croatia':25, 'Belgium':16,
              'Canada':17,'Switzerland':35,'Cameroon':75,'Brazil':10, 'Serbia':35,
              'Uruguay':25,'South Korea':60, 'Portugal':15, 'Ghana':65}
-standings= {}
 
 url= 'https://worldcupjson.net/teams'
 r=requests.get(url)
 data = r.json()
+
+standings={}
 for player in teams:
     standings[player] = 0
+    
+games_played={}
+for player in teams:
+    games_played[player] = 0
 
-master_data = []
-for k,v in data.items():
-    for x in v:
-        for y in x['teams']:
-            master_data.append(y)
-df = pd.DataFrame(master_data)
 
+for player in teams:
+    for pick in teams[player]:
+        standings[player]+=int(df.loc[df['name'] == pick, 'group_points'])*points_map[pick]
+        games_played[player]+=int(df.loc[df['name'] == pick, 'games_played'])
+        
 my_df = pd.DataFrame.from_dict(standings,orient='index',columns=['points']).sort_values(by=['points'],ascending=False)
 teams_df = pd.DataFrame(teams).T
 games_played_df=pd.DataFrame.from_dict(games_played,orient='index',columns=['games played outta 12'])
