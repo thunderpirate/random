@@ -28,6 +28,13 @@ url= 'https://worldcupjson.net/teams'
 r=requests.get(url)
 data = r.json()
 
+master_data = []
+for k,v in data.items():
+    for x in v:
+        for y in x['teams']:
+            master_data.append(y)
+df = pd.DataFrame(master_data)
+
 standings={}
 for player in teams:
     standings[player] = 0
