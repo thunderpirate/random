@@ -29,11 +29,11 @@ teams = {'Liam':['Brazil','France','Senegal','Argentina'],
         'Stewart':['Brazil','United States','Portugal','Uruguay'],
         'TingYu':['Brazil','France','England','Poland'],
         'Brian':['Germany','France','Netherlands','Belgium']}
-points_map = {'Qatar':65,'Ecuador':50,'Senegal':35,'Netherlands':14,'England':12,'Iran':65,
+points_map = {'Qatar':65,'Ecuador':40,'Senegal':35,'Netherlands':14,'England':12,'Iran':65,
               'United States':35,'Wales':40,'Argentina':11, 'Saudi Arabia':120,'Mexico':35,
               'Poland':35, 'Denmark':20,'Tunisia':90,'France':11,'Australia':75,'Germany':13,
              'Japan':60,'Spain':12,'Costa Rica':120,'Morocco':60,'Croatia':25, 'Belgium':16,
-             'Canada':17,'Switzerland':35,'Cameroon':75,'Brazil':10, 'Serbia':35,
+             'Canada':70,'Switzerland':35,'Cameroon':75,'Brazil':10, 'Serbia':35,
              'Uruguay':25,'South Korea':60, 'Portugal':15, 'Ghana':65}
 
 url= 'https://worldcupjson.net/teams'
