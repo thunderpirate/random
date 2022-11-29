@@ -66,8 +66,8 @@ teams_df = pd.DataFrame(teams).T
 games_played_df=pd.DataFrame.from_dict(games_played,orient='index',columns=['games played outta 12'])
 to_publish = my_df.join(games_played_df).join(teams_df)
 to_publish['ppg']=to_publish['points']/to_publish['games played outta 12']
-to_publish.rename(columns = {'points':'group game points','games played outta 12':'group games played',0:'Team 1',1:'Team 2',2:'Team 3',3:'Team 4'}, inplace = True)
-to_publish=to_publish[['group games points','group games played','ppg','Team 1','Team 2','Team 3','Team 4']]
+to_publish.rename(columns = {'points':'group game points','games played outta 12':'played',0:'Team 1',1:'Team 2',2:'Team 3',3:'Team 4'}, inplace = True)
+to_publish=to_publish[['group games points','played','ppg','Team 1','Team 2','Team 3','Team 4']]
 
 #updating for group winners and runners up
 temp_df = df.sort_values(by=['group_letter','group_points','goal_differential','goals_for','goals_against'],ascending=False).reset_index()
