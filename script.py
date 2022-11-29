@@ -88,4 +88,4 @@ to_publish['total tournament points']=to_publish['group success points']+to_publ
 to_publish.rename(columns = {'total tournament points':'Total points'}, inplace = True)
 to_publish=to_publish[['Total points','group success points','group game points','played','ppg','Team 1','Team 2','Team 3','Team 4']]
 
-st.dataframe(data=to_publish, height=my_df.shape[0]*50, width=2000, use_container_width=True)
+st.dataframe(data=to_publish, height=my_df.shape[0]*50, width=20000, use_container_width=True)
