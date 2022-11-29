@@ -66,7 +66,7 @@ teams_df = pd.DataFrame(teams).T
 games_played_df=pd.DataFrame.from_dict(games_played,orient='index',columns=['games played outta 12'])
 to_publish = my_df.join(games_played_df).join(teams_df)
 to_publish['ppg']=to_publish['points']/to_publish['games played outta 12']
-to_publish.rename(columns = {'points':'group games points','games played outta 12':'group games played',0:'Team 1',1:'Team 2',2:'Team 3',3:'Team 4'}, inplace = True)
+to_publish.rename(columns = {'points':'group game points','games played outta 12':'group games played',0:'Team 1',1:'Team 2',2:'Team 3',3:'Team 4'}, inplace = True)
 to_publish=to_publish[['group games points','group games played','ppg','Team 1','Team 2','Team 3','Team 4']]
 
 #updating for group winners and runners up
@@ -83,8 +83,9 @@ def get_success_points(my_list):
             group_success_points += 5*points_map[team]
     return group_success_points
 
-to_publish['group stage success points']=to_publish[['Team 1','Team 2','Team 3','Team 4']].apply(get_success_points, axis=1)
-to_publish['total tournament points']=to_publish['group stage success points']+to_publish['group games points']
+to_publish['group success points']=to_publish[['Team 1','Team 2','Team 3','Team 4']].apply(get_success_points, axis=1)
+to_publish['total tournament points']=to_publish['group success points']+to_publish['group game points']
+to_publish.rename(columns = {'total tournament points':'Total points','group games played'}, inplace = True)
 to_publish=to_publish[['Total points','group success points','group game points','played','ppg','Team 1','Team 2','Team 3','Team 4']]
 
 st.dataframe(data=to_publish, height=my_df.shape[0]*50, use_container_width=True)
