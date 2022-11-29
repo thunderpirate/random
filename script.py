@@ -87,4 +87,4 @@ to_publish['group stage success points']=to_publish[['Team 1','Team 2','Team 3',
 to_publish['total tournament points']=to_publish['group stage success points']+to_publish['group games points']
 to_publish=to_publish[['total tournament points','group stage success points','group games points','group games played','ppg','Team 1','Team 2','Team 3','Team 4']]
 
-st.dataframe(data=to_publish, height=my_df.shape[0]*50, use_container_width=True)
+st.dataframe(data=to_publish, height=my_df.shape[0]*50, use_container_width=False)
