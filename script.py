@@ -66,6 +66,25 @@ teams_df = pd.DataFrame(teams).T
 games_played_df=pd.DataFrame.from_dict(games_played,orient='index',columns=['games played outta 12'])
 to_publish = my_df.join(games_played_df).join(teams_df)
 to_publish['ppg']=to_publish['points']/to_publish['games played outta 12']
-to_publish.rename(columns = {'games played outta 12':'group games played',0:'Team 1',1:'Team 2',2:'Team 3',3:'Team 4'}, inplace = True)
-to_publish=to_publish[['points','group games played','ppg','Team 1','Team 2','Team 3','Team 4']]
+to_publish.rename(columns = {'points':'group games points','games played outta 12':'group games played',0:'Team 1',1:'Team 2',2:'Team 3',3:'Team 4'}, inplace = True)
+to_publish=to_publish[['group games points','group games played','ppg','Team 1','Team 2','Team 3','Team 4']]
+
+#updating for group winners and runners up
+temp_df = df.sort_values(by=['group_letter','group_points','goal_differential','goals_for','goals_against'],ascending=False).reset_index()
+groupwinners = temp_df.iloc[::4,:].loc[temp_df['games_played']>2]['name'].to_list()
+group_runnersup= temp_df.iloc[1: , :].iloc[::4,:].loc[temp_df['games_played']>2]['name'].to_list()
+
+def get_success_points(my_list):
+    group_success_points=0
+    for team in my_list:
+        if team in group_runnersup:
+            group_success_points += 3*points_map[team]
+        if team in groupwinners:
+            group_success_points += 5*points_map[team]
+    return group_success_points
+
+to_publish['group stage success points']=to_publish[['Team 1','Team 2','Team 3','Team 4']].apply(get_success_points, axis=1)
+to_publish['total tournament points']=to_publish['group stage success points']+to_publish['group games points']
+to_publish=to_publish[['total tournament points','group stage success points','group games points','group games played','ppg','Team 1','Team 2','Team 3','Team 4']]
+
 st.dataframe(data=to_publish, height=my_df.shape[0]*50, use_container_width=True)
