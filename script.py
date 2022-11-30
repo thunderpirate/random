@@ -87,7 +87,7 @@ to_publish['group success points']=to_publish[['Team 1','Team 2','Team 3','Team 
 to_publish['total tournament points']=to_publish['group success points']+to_publish['group game points']
 to_publish.rename(columns = {'total tournament points':'Total points'}, inplace = True)
 to_publish=to_publish[['Total points','group qual. points','group game points','played','ppg','Team 1','Team 2','Team 3','Team 4']]
-to_publish.sort_values(by=['Total points'],ascending=False)
+to_publish=to_publish.sort_values(by=['Total points'],ascending=False)
 
 st.set_page_config(layout="wide")
 st.dataframe(data=to_publish, height=my_df.shape[0]*50, width=20000, use_container_width=True)
