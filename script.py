@@ -80,6 +80,28 @@ for i, j in fixtures_df.iterrows():
 groupwinners = ['Netherlands', 'England', 'Argentina', 'France', 'Japan', 'Morocco', 'Brazil', 'Portugal']
 group_runnersup = ['Senegal', 'USA', 'Poland', 'Australia', 'Spain', 'Croatia', 'Switzerland', 'Korea Republic']
 
+url= 'https://worldcupjson.net/matches'
+r=requests.get(url)
+matches = r.json()
+
+r16_winners = []
+q_final_winners = []
+s_final_winners = []
+final_winner = []
+third_place = []
+for match in matches:
+    
+    if match['stage_name']=='Round of 16':
+        r16_winners.append(match['winner'])
+    elif match['stage_name']=='Quarter-final':
+        q_final_winners.append(match['winner'])
+    elif match['stage_name']=='Semi-final':
+        s_final_winners.append(match['winner'])
+    elif match['stage_name']=='Play-off for third place':
+        final_winner.append(match['winner'])
+    elif match['stage_name']=='Final':
+        third_place.append(match['winner'])
+
 def get_group_game_points(my_list):
     group_game_points=0
     for team in my_list:
