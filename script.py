@@ -56,6 +56,7 @@ away_team_detail=away_team_detail.drop(['penalties','country'],axis=1)
 away_team_detail.rename(columns = {'name':'away_name','goals':'away_goals'}, inplace = True)
 fixtures_df = fixtures_df.join(home_team_detail).join(away_team_detail)
 
+group_points_base = {}
 for i in points_map.keys():
     group_points_base[i]=0
 for i, j in fixtures_df.iterrows():
