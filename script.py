@@ -166,7 +166,7 @@ to_publish=to_publish.sort_values(by=['Total Points'],ascending=False)
 st.set_page_config(layout="wide")
 st.dataframe(data=to_publish, use_container_width=True)
 
-trimmed_fixtures = fixtures_df[~fixtures_df['winner'].isnull()]
+trimmed_fixtures = fixtures_df[fixtures_df['winner'].isnull()]
 trimmed_fixtures = trimmed_fixtures[['stage_name','home_name','away_name','datetime']]
 
 trimmed_fixtures['date']=pd.to_datetime(trimmed_fixtures['datetime']).dt.date
