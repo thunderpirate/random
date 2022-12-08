@@ -172,9 +172,8 @@ trimmed_fixtures = fixtures_df[fixtures_df['winner'].isnull()]
 trimmed_fixtures = trimmed_fixtures[['stage_name','home_name','away_name','datetime']]
 
 trimmed_fixtures['date']=pd.to_datetime(trimmed_fixtures['datetime']).dt.date
-trimmed_fixtures['time']=pd.to_datetime(trimmed_fixtures['datetime']).dt.tz_convert('Canada/Atlantic')
-trimmed_fixtures = trimmed_fixtures.style.format({'time': lambda x: "{}".format(x.strftime('%H%M'))}).set_table_styles('styles')
-trimmed_fixtures = trimmed_fixtures[['stage_name','home_name','away_name','date','time']]
+#trimmed_fixtures['time']=pd.to_datetime(trimmed_fixtures['datetime']).dt.tz_convert('Canada/Atlantic')
+trimmed_fixtures = trimmed_fixtures[['stage_name','home_name','away_name','date']]
 trimmed_fixtures.rename(columns = {'stage_name':'Stage','home_name':'Team 1','away_name':'Team 2'}, inplace = True)
 trimmed_fixtures=trimmed_fixtures.reset_index(drop=True)
 st.dataframe(data=trimmed_fixtures)
