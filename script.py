@@ -166,6 +166,13 @@ to_publish=to_publish.sort_values(by=['Total Points'],ascending=False)
 st.set_page_config(layout="wide")
 st.dataframe(data=to_publish, use_container_width=True)
 
+hide_dataframe_row_index = """
+            <style>
+            .row_heading.level0 {display:none}
+            .blank {display:none}
+            </style>
+            """
+
 st.write('Upcoming fixtures')
 trimmed_fixtures = fixtures_df[fixtures_df['winner'].isnull()]
 trimmed_fixtures = trimmed_fixtures[['stage_name','home_name','away_name','datetime']]
@@ -174,5 +181,5 @@ trimmed_fixtures['date']=pd.to_datetime(trimmed_fixtures['datetime']).dt.date
 trimmed_fixtures['time']=pd.to_datetime(trimmed_fixtures['datetime']).dt.tz_convert('Canada/Atlantic').dt.time
 trimmed_fixtures = trimmed_fixtures[['stage_name','home_name','away_name','date','time']]
 trimmed_fixtures.rename(columns = {'stage_name':'Stage','home_name':'Team 1','away_name':'Team 2'}, inplace = True)
-trimmed_fixtures.reset_index(drop=True)
+st.markdown(hide_dataframe_row_index,unsafe_allow_html=True)
 st.dataframe(data=trimmed_fixtures)
