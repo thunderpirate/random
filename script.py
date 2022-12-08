@@ -164,4 +164,4 @@ to_publish=to_publish[['Total Points','Champion points','3rd place points','semi
 to_publish=to_publish.sort_values(by=['Total Points'],ascending=False)
 
 st.set_page_config(layout="wide")
-st.dataframe(data=to_publish, height=my_df.shape[0]*50, width=20000, use_container_width=True)
+st.dataframe(data=to_publish, use_container_width=True)
